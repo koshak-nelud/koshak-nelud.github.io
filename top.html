@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Топы - Legion of Mist</title>
+    <link id="serverFavicon" rel="icon" href="https://cdn.discordapp.com/embed/avatars/0.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .top-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .top-card {
+            background: var(--discord-light);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--discord-lighter);
+        }
+        
+        .top-header {
+            background: linear-gradient(135deg, var(--discord-blurple), #4752c4);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .top-list {
+            padding: 1rem;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        
+        .top-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: var(--discord-lighter);
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .top-item:hover {
+            transform: translateX(5px);
+            background: var(--discord-darker);
+        }
+        
+        .top-rank {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        .rank-1 { 
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        .rank-2 { color: #C0C0C0; }
+        .rank-3 { color: #CD7F32; }
+        
+        .top-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--discord-blurple);
+        }
+        
+        .top-info {
+            flex: 1;
+        }
+        
+        .top-name {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .top-id {
+            font-size: 0.7rem;
+            color: var(--discord-gray);
+            font-family: monospace;
+        }
+        
+        .top-value {
+            color: var(--discord-blurple);
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: right;
+        }
+        
+        .top-unit {
+            font-size: 0.7rem;
+            color: var(--discord-gray);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--discord-gray);
+        }
+        
+        .refresh-btn {
+            background: var(--discord-blurple);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: background 0.2s;
+        }
+        
+        .refresh-btn:hover {
+            background: #4752c4;
+        }
+        
+        @media (max-width: 768px) {
+            .top-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img id="serverAvatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord">
+                <span id="serverName">Legion of Mist</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">🏠 Главная</a>
+                <a href="reviews.html">⭐ Отзывы</a>
+                <a href="complaints.html">📋 Жалобы</a>
+                <a href="honor.html">👑 Зала Славы</a>
+                <a href="top.html" class="active">🏆 Топы</a>
+                <div id="authButton"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">🏆 Топы сервера</h1>
+                <p>Лучшие участники по различным категориям</p>
+            </div>
+            
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <button class="refresh-btn" onclick="refreshTops()">🔄 Обновить</button>
+            </div>
+            
+            <div class="top-container">
+                <div class="top-card">
+                    <div class="top-header">💬 Топ по сообщениям</div>
+                    <div class="top-list" id="messagesTop">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+                
+                <div class="top-card">
+                    <div class="top-header">🎤 Топ по голосовому времени</div>
+                    <div class="top-list" id="voiceTop">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1rem; padding: 1rem; background: var(--discord-lighter); border-radius: 12px; text-align: center;">
+                <small style="color: var(--discord-gray);">
+                    📊 Статистика собирается автоматически. Для появления в топе нужно отправлять сообщения или находиться в голосовых каналах.
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script src="top.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подать жалобу - Legion of Mist</title>
+    <link id="serverFavicon" rel="icon" href="https://cdn.discordapp.com/embed/avatars/0.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img id="serverAvatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord">
+                <span id="serverName">Legion of Mist</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">🏠 Главная</a>
+                <a href="reviews.html">⭐ Отзывы</a>
+                <a href="complaints.html" class="active">📋 Жалобы</a>
+                <a href="honor.html">👑 Зала Славы</a>
+                <a href="top.html">🏆 Топы</a>
+                <div id="authButton"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="userStatus" class="alert alert-info" style="display: none;"></div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">📹 Подать жалобу на игрока</h2>
+            </div>
+            <form id="complaintForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="playerName">👤 Никнейм игрока *</label>
+                    <input type="text" id="playerName" name="playerName" required placeholder="Введите никнейм нарушителя">
+                </div>
+                <div class="form-group">
+                    <label for="reason">📝 Причина жалобы *</label>
+                    <textarea id="reason" name="reason" rows="4" required placeholder="Опишите ситуацию подробно..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="video">🎬 Видеоматериал *</label>
+                    <input type="file" id="video" name="video" accept="video/*" required>
+                    <small style="color: var(--discord-gray); display: block; margin-top: 0.5rem;">
+                        ⚠️ Поддерживаемые форматы: MP4, WebM, MOV, AVI. Максимальный размер: 100MB
+                    </small>
+                    <div id="videoPreview" style="margin-top: 1rem;"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">📤 Отправить жалобу</button>
+            </form>
+        </div>
+
+        <div class="card" id="moderatorPanel" style="display: none;">
+            <div class="card-header">
+                <h2 class="card-title">🛡️ Панель модератора</h2>
+            </div>
+            <div id="complaintsList">
+                <div class="loading">Загрузка жалоб...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="complaints.js"></script>
+</body>
+</html>
