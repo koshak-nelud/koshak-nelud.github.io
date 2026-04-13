@@ -47,7 +47,7 @@ const upload = multer({
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('discord-site'));
+app.use(express.static(__dirname));
 app.use('/uploads', express.static(uploadDir));
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret-key',
