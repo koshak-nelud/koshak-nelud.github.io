@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зала Славы - Legion of Mist</title>
+    <link id="serverFavicon" rel="icon" href="https://cdn.discordapp.com/embed/avatars/0.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .honor-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .honor-card {
+            background: linear-gradient(135deg, #1e1f22 0%, #2b2d31 100%);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .honor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .honor-banner {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .banner-leader {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+        }
+        
+        .banner-deputy {
+            background: linear-gradient(135deg, #2d1b4e, #1a1a2e, #0f3460);
+        }
+        
+        .honor-content {
+            display: flex;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .honor-avatar-wrapper {
+            flex-shrink: 0;
+        }
+        
+        .honor-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid var(--discord-blurple);
+            background: var(--discord-dark);
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            margin-top: -50px;
+        }
+        
+        .honor-info {
+            flex: 1;
+        }
+        
+        .honor-title {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+        
+        .honor-subtitle {
+            color: var(--discord-gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .honor-id {
+            color: var(--discord-gray);
+            font-size: 0.7rem;
+            font-family: monospace;
+            margin-bottom: 1rem;
+        }
+        
+        .honor-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .honor-stat {
+            text-align: center;
+        }
+        
+        .honor-stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .honor-stat-label {
+            font-size: 0.7rem;
+            color: var(--discord-gray);
+        }
+        
+        .honor-role {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        .role-leader {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #1e1f22;
+        }
+        
+        .role-deputy {
+            background: linear-gradient(135deg, #C0C0C0, #808080);
+            color: #1e1f22;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--discord-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .honor-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .honor-avatar {
+                width: 80px;
+                height: 80px;
+                margin-top: -40px;
+            }
+            
+            .honor-title {
+                font-size: 1.3rem;
+            }
+            
+            .honor-stats {
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img id="serverAvatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord">
+                <span id="serverName">Legion of Mist</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">🏠 Главная</a>
+                <a href="/reviews.html">⭐ Отзывы</a>
+                <a href="/complaints.html">📋 Жалобы</a>
+                <a href="/honor.html" class="active">👑 Зала Славы</a>
+                <a href="/top.html">🏆 Топы</a>
+                <div id="authButton"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">👑 Зала Славы</h1>
+                <p>Лидеры нашего сервера</p>
+            </div>
+            
+            <div class="honor-container">
+                <div class="honor-card" id="leaderCard">
+                    <div class="honor-banner banner-leader"></div>
+                    <div class="honor-content" id="leaderContent">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+                
+                <div class="honor-card" id="deputyCard">
+                    <div class="honor-banner banner-deputy"></div>
+                    <div class="honor-content" id="deputyContent">
+                        <div class="loading">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/honor.js"></script>
+</body>
+</html>
