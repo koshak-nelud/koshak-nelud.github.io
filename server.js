@@ -9,7 +9,7 @@ const sqlite3 = require('sqlite3').verbose();
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PYTHON_BOT_API || 'http://localhost:5000';
+const PORT = process.env.PORT || 5000;
 const PYTHON_BOT_API = 'https://legioner.discloud.app';
 
 // ID пользователей с правами администратора (Глава и Зам. Главы)
@@ -422,7 +422,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`\n${'='.repeat(50)}`);
     console.log(`✅ Сайт: http://localhost:${PORT}`);
     console.log(`🤖 Бот API: ${PYTHON_BOT_API}`);
