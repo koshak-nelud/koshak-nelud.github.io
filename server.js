@@ -336,8 +336,8 @@ app.post('/api/complaints', upload.single('video'), async (req, res) => {
                 }
             });
     } catch (error) {
-        console.error('Ошибка:', error);
-        res.status(500).json({ error: 'Ошибка' });
+        console.error('🔥 FULL ERROR:', error);
+        res.status(500).json({ error: error.message });
     }
 });
 
