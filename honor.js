@@ -23,7 +23,7 @@ async function loadServerAvatar() {
 
 async function getUserInfo(userId) {
     try {
-        const response = await fetch('http://localhost:5000/check-role', {
+        const response = await fetch('/api/can-review', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_id: userId })
