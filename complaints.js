@@ -234,6 +234,8 @@ document.getElementById('complaintForm').addEventListener('submit', async (e) =>
         return;
     }
     
+    const fileInput = document.getElementById('video');
+    
     formData.append('playerName', playerName);
     formData.append('reason', reason);
     formData.append('video', fileInput.files[0]);
