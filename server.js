@@ -312,6 +312,7 @@ app.post('/api/complaints', upload.single('video'), async (req, res) => {
         console.log('BODY:', req.body);
         console.log('FILE:', req.file);
         
+        const videoPath = `/uploads/${videoFile.filename}`;
         const fullUrl = `https://${req.get('host')}${videoPath}`;
         
         db.run(`INSERT INTO complaints (user_id, username, player_name, reason, video_path) 
