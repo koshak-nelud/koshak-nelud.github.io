@@ -23,7 +23,7 @@ async function loadServerAvatar() {
 
 async function loadTopMessages() {
     try {
-        const response = await fetch('http://localhost:5000/top-messages?limit=10');
+        const response = await fetch('/api/top-messages?limit=10');
         const data = await response.json();
         
         const container = document.getElementById('messagesTop');
@@ -59,7 +59,7 @@ async function loadTopMessages() {
 
 async function loadTopVoice() {
     try {
-        const response = await fetch('http://localhost:5000/top-voice?limit=10');
+        const response = await fetch('/api/top-voice?limit=10');
         const data = await response.json();
         
         const container = document.getElementById('voiceTop');
@@ -96,7 +96,7 @@ async function loadTopVoice() {
 async function loadUsernames(users) {
     for (const user of users) {
         try {
-            const response = await fetch('http://localhost:5000/check-role', {
+            const response = await fetch('/api/can-review', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ user_id: user.user_id })
