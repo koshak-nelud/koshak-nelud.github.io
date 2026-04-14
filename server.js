@@ -309,6 +309,9 @@ app.post('/api/complaints', upload.single('video'), async (req, res) => {
         if (!playerName || !reason) return res.status(400).json({ error: 'Заполните все поля' });
         if (!videoFile) return res.status(400).json({ error: 'Видео обязательно' });
         
+        console.log('BODY:', req.body);
+        console.log('FILE:', req.file);
+        
         const fullUrl = `https://${req.get('host')}${videoPath}`;
         
         db.run(`INSERT INTO complaints (user_id, username, player_name, reason, video_path) 
