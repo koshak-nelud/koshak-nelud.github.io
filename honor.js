@@ -35,13 +35,7 @@ async function getUserInfo(userId) {
         
         const data = await response.json();
         
-        let avatarUrl = 'https://cdn.discordapp.com/embed/avatars/0.png';
-        if (data.avatar) {
-            avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${data.avatar}.png?size=256`;
-        } else {
-            const defaultAvatarNum = parseInt(data.discriminator) % 5 || 0;
-            avatarUrl = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNum}.png`;
-        }
+        const avatarUrl = data.avatar_url || 'https://cdn.discordapp.com/embed/avatars/0.png';
         
         return {
             username: data.username || 'Unknown',
