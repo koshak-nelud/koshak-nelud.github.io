@@ -236,7 +236,7 @@ document.getElementById('complaintForm').addEventListener('submit', async (e) =>
     
     formData.append('playerName', playerName);
     formData.append('reason', reason);
-    formData.append('video', videoFile);
+    formData.append('video', fileInput.files[0]);
     
     const submitBtn = e.target.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
