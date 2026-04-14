@@ -226,8 +226,8 @@ app.post('/api/can-review', async (req, res) => {
         is_admin: isAdmin(user_id),
         reviewer_roles: roleCheck.reviewer_roles || [],
         moderator_roles: roleCheck.moderator_roles || [],
-        username: roleCheck.username
-        avatar_url: roleCheck.avatar_url,
+        username: roleCheck.username,
+        avatar_url: roleCheck.avatar_url
     });
 });
 
