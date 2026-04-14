@@ -309,7 +309,7 @@ app.post('/api/complaints', upload.single('video'), async (req, res) => {
         if (!playerName || !reason) return res.status(400).json({ error: 'Заполните все поля' });
         if (!videoFile) return res.status(400).json({ error: 'Видео обязательно' });
         
-        const videoPath = `/uploads/${videoFile.filename}`;
+        const fullUrl = `${req.protocol}://${req.get('host')}${videoPath}`;
         
         db.run(`INSERT INTO complaints (user_id, username, player_name, reason, video_path) 
                 VALUES (?, ?, ?, ?, ?)`,
@@ -325,7 +325,7 @@ app.post('/api/complaints', upload.single('video'), async (req, res) => {
                         username: req.session.user.username,
                         playerName: playerName,
                         reason: reason,
-                        videoPath: videoPath
+                        videoPath: fullUrl
                     };
                     
                     await sendComplaintNotification(newComplaint);
