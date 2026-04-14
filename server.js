@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const PYTHON_BOT_API = 'https://legioner.discloud.app';
+const PYTHON_BOT_API = 'https://legion-of-mist-bot.onrender.com';
 
 // ID пользователей с правами администратора (Глава и Зам. Главы)
 const ADMIN_USER_IDS = ['997073531470888980', '539049296885186560'];
