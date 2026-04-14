@@ -44,7 +44,7 @@ async function loadTopMessages() {
                     <div class="top-id">ID: ${user.user_id}</div>
                 </div>
                 <div class="top-value">
-                    ${user.count} <span class="top-unit">сообщ.</span>
+                    ${user.count || 0} <span class="top-unit">сообщ.</span>
                 </div>
             </div>
         `).join('');
