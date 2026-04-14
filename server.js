@@ -202,6 +202,28 @@ app.get('/api/guild-info', async (req, res) => {
     }
 });
 
+app.get('/api/top-messages', async (req, res) => {
+    try {
+        const limit = req.query.limit || 10;
+        const response = await axios.get(`${PYTHON_BOT_API}/top-messages?limit=${limit}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Ошибка топ сообщений:', error.message);
+        res.status(500).json({ success: false });
+    }
+});
+
+app.get('/api/top-voice', async (req, res) => {
+    try {
+        const limit = req.query.limit || 10;
+        const response = await axios.get(`${PYTHON_BOT_API}/top-voice?limit=${limit}`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Ошибка топ войса:', error.message);
+        res.status(500).json({ success: false });
+    }
+});
+
 app.get('/api/user', async (req, res) => {
     if (req.session.user) {
         const roleCheck = await checkUserRoles(req.session.user.id);
